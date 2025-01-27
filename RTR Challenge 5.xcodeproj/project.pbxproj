@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B2E6E0C12D47BE3A008DCDC2 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E6E0C02D47BE3A008DCDC2 /* Options.swift */; };
+		B2E6E0C32D47D198008DCDC2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B2E6E0C22D47D18F008DCDC2 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B25B43322D427E8400638E1E /* RTR Challenge 5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RTR Challenge 5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E6E0C02D47BE3A008DCDC2 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		B2E6E0C22D47D18F008DCDC2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,6 +39,7 @@
 		B25B43292D427E8400638E1E = {
 			isa = PBXGroup;
 			children = (
+				B2E6E0C22D47D18F008DCDC2 /* .gitignore */,
 				B2E6E0C02D47BE3A008DCDC2 /* Options.swift */,
 				B25B43342D427E8400638E1E /* RTR Challenge 5 */,
 				B25B43332D427E8400638E1E /* Products */,
@@ -115,6 +118,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2E6E0C32D47D198008DCDC2 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
