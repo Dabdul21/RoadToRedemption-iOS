@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeScreen: View {
     var body: some View {
-        
+        NavigationStack{
         ZStack{
             Image("W") // Replace with your image asset name
                     .resizable()
@@ -26,18 +26,25 @@ struct WelcomeScreen: View {
                 .frame(width: 500, height: 100)
             
             VStack{
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.red)
-                    .frame(width: 200, height: 50)
-                    .overlay(
-                        Text("PLAY")
-                            .foregroundColor(.white)
-                            .font(.system(size: 30, weight: .bold))
-                    )
+                NavigationLink{
+                    ScreenOne()
+                } label:{
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(Color.red)
+                        .frame(width: 200, height: 50)
+                        .overlay(
+                            Text("PLAY")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30, weight: .bold))
+                        )
+                    }
+                .isDetailLink(false) // Disables the default back button behavior
+                }
             }
         }
     }
 }
+
 
 #Preview {
     WelcomeScreen()
