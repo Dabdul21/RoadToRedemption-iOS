@@ -4,40 +4,27 @@
 //
 //  Created by Dayan Abdulla on 1/27/25.
 //
-
 import SwiftUI
-//jrhfvjhrfvugv
+
 struct Options: View {
     var body: some View {
-        RoundedRectangle(cornerRadius: 15)
-            .fill(Color.red)
-            .frame(width: 200, height: 50)
-            .overlay(
-                Text("Option 1")
+        Button(action: {
+            print("Button tapped!")
+        }) {
+            ZStack {
+                Image("ButtonTemplate") // Ensure the image is in your assets first or wont load
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 380, height: 125)
+                
+                Text("Example Text blah ") // Replace with real optionstext
+                    .font(.headline)
                     .foregroundColor(.white)
-                    .font(.system(size: 30, weight: .bold))
-            )
-        
-        RoundedRectangle(cornerRadius: 15)
-            .fill(Color.red)
-            .frame(width: 200, height: 50)
-            .overlay(
-                Text("Option 2")
-                    .foregroundColor(.white)
-                    .font(.system(size: 30, weight: .bold))
-            )
-        
-        RoundedRectangle(cornerRadius: 15)
-            .fill(Color.red)
-            .frame(width: 200, height: 50)
-            .overlay(
-                Text("Option 3")
-                    .foregroundColor(.white)
-                    .font(.system(size: 30, weight: .bold))
-            )
-    }
+                    .shadow(radius: 2)
+            }
+        }
+        .frame(width: 300, height: 55)    }
 }
-
 #Preview {
     Options()
 }
