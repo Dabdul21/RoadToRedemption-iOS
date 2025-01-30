@@ -13,6 +13,7 @@ struct BottomView: View {
         ZStack {
             // Blurred Background (behind the bottom sheet)
             VisualEffectBlur()
+                .edgesIgnoringSafeArea(.all)
 
             VStack {
                 // Read More Text
