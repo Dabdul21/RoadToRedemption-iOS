@@ -21,7 +21,7 @@ struct ScreenOne: View {
                 .ignoresSafeArea()
 
             VStack {
-                Spacer().frame(height: 265) // Adds limited space on top by pushing buttons down (DONT DELETE)
+                Spacer().frame(height: 230) // Adds limited space on top by pushing buttons down (DONT DELETE)
 
                 // Option Buttons
                 VStack(spacing: 10) {
@@ -54,13 +54,13 @@ struct ScreenOne: View {
                     .onTapGesture {
                         isBottomSheetVisible = true // Open BottomView "the drop down"  when tapped
                     }
-                    .padding(.bottom, 30) // Adjusts the spacing from bottom (DONT REMOVE)
+                    .padding(.bottom, 60) // Adjusts the spacing from bottom (DONT REMOVE)
             }
         }
         .sheet(isPresented: $isBottomSheetVisible) {
             BottomView(isVisible: $isBottomSheetVisible) //, selectedText: selectedText goes inside when logic is made so it shows the story
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(false)
     }
 }
 
