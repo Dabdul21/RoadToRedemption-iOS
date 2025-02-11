@@ -18,7 +18,7 @@ import SwiftUI
 struct KnightScreen: View {
     var body: some View {
         VStack {
-            Image("BackGroundImg")
+            Image("BGGI")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
