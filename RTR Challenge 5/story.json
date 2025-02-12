@@ -1,0 +1,32 @@
+{
+    "Aldreic": {
+        "start": {
+            "text": "Aldreic stands at the castle gates. and he does this to keep goign but catn what to du ladjndfjndfpick",
+            "choices": {
+                "Enter the castle": "scene1",
+                "Walk away": "scene2",
+                "Look around": "scene3"
+            },
+            "outcomes": {
+                "Enter the castle": { "text": "You step into the grand hall.", "background": "castle.jpg" },
+                "Walk away": { "text": "You leave the castle behind.", "background": "forest.jpg" },
+                "Look around": { "text": "You notice a secret entrance.", "background": "door.jpg" }
+            }
+        }
+    },
+    "Thane": {
+        "start": {
+            "text": "Thane wakes up in a burning village bjbsdfjbsdfjbsdfjbsdfb and then stuff happens to him.",
+            "choices": {
+                "Save the villagers": "scene1",
+                "Run away": "scene2",
+                "Look for weapons": "scene3"
+            },
+            "outcomes": {
+                "Save the villagers": { "text": "You help rescue survivors.", "background": "fire.jpg" },
+                "Run away": { "text": "You escape into the woods.", "background": "woods.jpg" },
+                "Look for weapons": { "text": "You find an old sword.", "background": "sword.jpg" }
+            }
+        }
+    }
+}

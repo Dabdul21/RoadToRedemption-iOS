@@ -1,69 +1,88 @@
-//
-//  ScreenOne.swift
-//  RTR Challenge 5
-//
-//  Created by Dayan Abdulla on 1/27/25.
 import SwiftUI
 
 struct ScreenOne: View {
+    @ObservedObject var gameManager: GameManager
     @State private var isBottomSheetVisible = false
-    
-    
-//    @State private var selectedText = "" // Holds the var for the text for BottomView later when logic made
-
 
     var body: some View {
         ZStack {
-            // Background Image
             Image("BackGroundImg")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
 
             VStack {
-                Spacer().frame(height: 230) // Adds limited space on top by pushing buttons down (DONT DELETE)
+                Spacer().frame(height: 230)
 
-                // Option Buttons
-                VStack(spacing: 10) {
-                    Options()
-                        .frame(width: 390, height: 80)
-                        .cornerRadius(5)
-
-                    Options()
-                        .frame(width: 370, height: 80)
-                        .cornerRadius(10)
-
-                    Options()
-                        .frame(width: 370, height: 80)
-                        .cornerRadius(10)
-                }
-                .padding(.leading, 11) //CENTERS BUTTONS and ROUNDED RECTANGLE
-
-                Spacer() // Pushes Rounded Rectangle to the bottom (DONT REMOVE)
-
-                // Rounded Rectangle Button/ BottomView
-                RoundedRectangle(cornerRadius: 40)
-                    .fill(Color.black.opacity(0.7)) // Semi-transparent background
-                    .frame(width: 370, height: 295)
-                    .overlay(
-                        Text("Blah blah, cick & read more..") // just placeholder text later put array here
-                            .foregroundColor(.white)
-                            .padding()
-                            .multilineTextAlignment(.center)
-                    )
-                    .onTapGesture {
-                        isBottomSheetVisible = true // Open BottomView "the drop down"  when tapped
+                // ✅ Ensure the character is set, otherwise show an error
+                if let character = gameManager.selectedCharacter {
+                    VStack(spacing: 10) {
+                        if let storyNode = gameManager.story[character]?[gameManager.currentStoryNode] {
+                            
+                            ForEach(storyNode.choices.keys.sorted(), id: \.self) { choice in
+                                if let outcome = storyNode.outcomes?[choice] {
+                                    Button(action: {
+                                        gameManager.selectedOutcome = outcome
+                                        gameManager.showingOutcome = true
+                                    }) {
+                                        ZStack {
+                                            Image("ButtonTemplate")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 380, height: 155)
+                                            
+                                            Text(choice)
+                                                .font(.headline)
+                                                .foregroundColor(.white)
+                                                .shadow(radius: 2)
+                                        }
+                                    }
+                                    .frame(width: 300, height: 65)
+                                }
+                            }
+                        }
                     }
-                    .padding(.bottom, 60) // Adjusts the spacing from bottom (DONT REMOVE)
+                    .padding(.leading, 11)
+                } else {
+                    Text("Error: No Character Selected").foregroundColor(.red).bold()
+                }
+
+                Spacer()
+
+                // ✅ Story preview inside a bottom rectangle
+                if let character = gameManager.selectedCharacter,
+                   let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
+                    
+                    let previewText = String(storyText.prefix(80)) + "..." // ✅ Show first 80 characters
+                    
+                    RoundedRectangle(cornerRadius: 40)
+                        .fill(Color.black.opacity(0.7))
+                        .frame(width: 370, height: 100)
+                        .overlay(
+                            Text(previewText)
+                                .foregroundColor(.white)
+                                .padding()
+                                .multilineTextAlignment(.center)
+                        )
+                        .onTapGesture {
+                            isBottomSheetVisible = true
+                        }
+                        .padding(.bottom, 60)
+                }
             }
         }
         .sheet(isPresented: $isBottomSheetVisible) {
-            BottomView(isVisible: $isBottomSheetVisible) //, selectedText: selectedText goes inside when logic is made so it shows the story
+            BottomView(
+                isVisible: $isBottomSheetVisible,
+                storyText: gameManager.story[gameManager.selectedCharacter ?? ""]?[gameManager.currentStoryNode]?.text ?? "No Story Found"
+            )
+            .presentationDetents([.medium]) // ✅ Only opens halfway
+        }
+        .fullScreenCover(isPresented: $gameManager.showingOutcome) {
+            if let outcome = gameManager.selectedOutcome {
+                ChoiceOutcomeView(outcome: outcome, showOutcome: $gameManager.showingOutcome)
+            }
         }
         .navigationBarBackButtonHidden(false)
     }
-}
-
-#Preview {
-    ScreenOne()
 }

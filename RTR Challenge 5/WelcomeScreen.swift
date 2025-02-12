@@ -2,7 +2,8 @@ import SwiftUI
 
 struct WelcomeScreen: View {
     @StateObject var audioManager = AudioManager.shared
-    @State private var navigateToNextScreen = false // Track navigation state
+    @State private var navigateToSelection = false
+    @EnvironmentObject var gameManager: GameManager
 
     var body: some View {
         NavigationStack {
@@ -22,19 +23,18 @@ struct WelcomeScreen: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 30, weight: .bold)))
                 }
-                .offset(y: -100) // Increase negative value to move it higher
-
+                .offset(y: -100)
             }
             .onTapGesture {
-                navigateToNextScreen = true // Trigger navigation on tap
+                navigateToSelection = true
             }
-            .navigationDestination(isPresented: $navigateToNextScreen) {
-                ScreenOne() // Navigate to ScreenOne on tap
+            .navigationDestination(isPresented: $navigateToSelection) {
+                PlayerSelectionView(gameManager: gameManager) // ✅ Navigates to selection first
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    WelcomeScreen().environmentObject(GameManager())
 }

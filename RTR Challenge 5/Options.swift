@@ -1,30 +1,34 @@
+////
+////  Options.swift
+////  RTR Challenge 5
+////
+////  Created by Dayan Abdulla on 1/27/25.
+////
+//import SwiftUI
 //
-//  Options.swift
-//  RTR Challenge 5
+//struct Options: View {
+//    let choiceText: String
+//    let outcome: ChoiceOutcome
+//    @Binding var showOutcome: Bool
+//    @Binding var selectedOutcome: ChoiceOutcome?
 //
-//  Created by Dayan Abdulla on 1/27/25.
+//    var body: some View {
+//        Button(action: {
+//            selectedOutcome = outcome
+//            showOutcome = true
+//        }) {
+//            ZStack {
+//                Image("ButtonTemplate")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 380, height: 125)
 //
-import SwiftUI
-
-struct Options: View {
-    var body: some View {
-        Button(action: {
-            print("Button tapped!")
-        }) {
-            ZStack {
-                Image("ButtonTemplate") // Ensure the image is in your assets first or wont load
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 380, height: 125)
-                
-                Text("Example Text blah ") // Replace with real optionstext
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .shadow(radius: 2)
-            }
-        }
-        .frame(width: 300, height: 55)    }
-}
-#Preview {
-    Options()
-}
+//                Text(choiceText)
+//                    .font(.headline)
+//                    .foregroundColor(.white)
+//                    .shadow(radius: 2)
+//            }
+//        }
+//        .frame(width: 300, height: 55)
+//    }
+//}
