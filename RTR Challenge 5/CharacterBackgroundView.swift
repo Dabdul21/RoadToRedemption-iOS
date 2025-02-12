@@ -1,25 +1,30 @@
 import SwiftUI
 
 struct CharacterBackgroundView: View {
-    @ObservedObject var gameManager: GameManager
+    @EnvironmentObject var gameManager: GameManager
     @State private var navigateToStory = false
 
     var body: some View {
         ZStack {
-            Image(gameManager.selectedCharacter == "Aldreic" ? "AldreicBackground" : "ThaneBackground")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            // ✅ Ensure only ONE background shows
+            if let character = gameManager.selectedCharacter {
+                Image(character == "Aldreic" ? "BG_Aldreic" : "BG_Thane")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            }
 
             VStack {
-                Text(characterStory)
-                    .font(.custom("STFangsong", size: 22))
+                // ✅ Ensure only ONE story shows
+                Text(gameManager.selectedCharacter == "Aldreic" ? aldreicStory : thaneStory)
+                    .font(.custom("STFangsong", size: 23))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
-                    .frame(maxWidth: 350)
+                    .frame(maxWidth: 350, maxHeight: 310)
                     .background(Color.black.opacity(0.7))
-                    .cornerRadius(15)
+                    .cornerRadius(20)
+                    .offset(y:-100)
 
                 Button("Continue") {
                     navigateToStory = true
@@ -29,23 +34,18 @@ struct CharacterBackgroundView: View {
                 .frame(width: 200)
                 .background(Color.white.opacity(0.8))
                 .foregroundColor(.black)
-                .cornerRadius(15)
+                .cornerRadius(20)
                 .shadow(radius: 8)
             }
         }
         .navigationDestination(isPresented: $navigateToStory) {
-            ScreenOne(gameManager: gameManager) // ✅ Ensure GameManager is passed properly
+            ScreenOne().environmentObject(gameManager)
         }
-    }
-
-    private var characterStory: String {
-        gameManager.selectedCharacter == "Aldreic" ? aldreicStory : thaneStory
     }
 
     private var aldreicStory: String {
         """
-        A warrior forged in the fires of war, Aldreic stands as an unyielding shield against the chaos. 
-        Bound by honor, his path is one of discipline, sacrifice, and unwavering courage.
+        Born into poverty in the village of Valleys, Aldric was a boy fueled by dreams of glory and a heart aflame with courage. He grew up next to Thane, an ingenious but frail friend whose ambitions lay elsewhere. Together, they survived harsh winters and looming war—until the news that raiders from a distant land descended on their home.
         """
     }
 
@@ -55,4 +55,8 @@ struct CharacterBackgroundView: View {
         Every step he takes is calculated, every move a dance of precision.
         """
     }
+}
+
+#Preview {
+    CharacterBackgroundView().environmentObject(GameManager())
 }

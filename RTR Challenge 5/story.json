@@ -1,31 +1,68 @@
 {
     "Aldreic": {
         "start": {
-            "text": "Aldreic stands at the castle gates. and he does this to keep goign but catn what to du ladjndfjndfpick",
+            "text": "On a quiet day, You have free time in the village of Valleys. You can either spend it preparing for the unknown or enjoying quality time with your best friend Thane.",
             "choices": {
-                "Enter the castle": "scene1",
+                "1. Help fortify the village with the older villagers.": "scene1",
                 "Walk away": "scene2",
                 "Look around": "scene3"
             },
             "outcomes": {
-                "Enter the castle": { "text": "You step into the grand hall.", "background": "castle.jpg" },
-                "Walk away": { "text": "You leave the castle behind.", "background": "forest.jpg" },
-                "Look around": { "text": "You notice a secret entrance.", "background": "door.jpg" }
+                "Enter the castle": { "text": "You step into the grand hall.", "background": "castle.jpg", "death": false },
+                "Walk away": { "text": "You leave the castle behind.", "background": "forest.jpg", "death": false },
+                "Look around": { "text": "You notice a secret entrance.", "background": "door.jpg", "death": false }
             }
-        }
-    },
-    "Thane": {
-        "start": {
-            "text": "Thane wakes up in a burning village bjbsdfjbsdfjbsdfjbsdfb and then stuff happens to him.",
+        },
+        "scene2": {
+            "text": "Aldreic decides to walk away, but something feels off. A figure watches from the shadows.",
             "choices": {
-                "Save the villagers": "scene1",
-                "Run away": "scene2",
-                "Look for weapons": "scene3"
+                "Ignore them": "scene4",
+                "Confront them": "scene5",
+                "Run away": "scene6"
             },
             "outcomes": {
-                "Save the villagers": { "text": "You help rescue survivors.", "background": "fire.jpg" },
-                "Run away": { "text": "You escape into the woods.", "background": "woods.jpg" },
-                "Look for weapons": { "text": "You find an old sword.", "background": "sword.jpg" }
+                "Ignore them": { "text": "The figure disappears into the mist.", "background": "mist.jpg", "death": false },
+                "Confront them": { "text": "The stranger draws their weapon!", "background": "duel.jpg", "death": false },
+                "Run away": { "text": "You sprint into the woods, your heart racing.", "background": "forest.jpg", "death": false }
+            }
+        },
+        "scene4": {
+            "text": "Aldreic continues on his journey, but the mist thickens, making it difficult to see.",
+            "choices": {
+                "Move forward": "scene8",
+                "Wait for it to clear": "scene9",
+                "Turn back": "start"
+            },
+            "outcomes": {
+                "Move forward": { "text": "You walk blindly through the fog.", "background": "fog.jpg", "death": false },
+                "Wait for it to clear": { "text": "A shadowy figure approaches.", "background": "shadow.jpg", "death": false },
+                "Turn back": { "text": "You return to the castle gates.", "background": "castle.jpg", "death": false }
+            }
+        },
+        "scene5": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene12"
+            },
+            "outcomes": {
+                "Fight back": { "text": "You clash swords with the stranger!", "background": "battle.jpg", "death": false },
+                "Dodge and counter": { "text": "You skillfully evade the attack.", "background": "evade.jpg", "death": false },
+                "Try to talk": { "text": "The stranger hesitates but stays on guard.", "background": "talk.jpg", "death": false }
+            }
+        },
+        "scene8": {
+            "text": "Aldreic emerges from the mist and finds himself at the edge of a cliff.",
+            "choices": {
+                "Climb down": "scene13",
+                "Jump": "scene14",
+                "Go back": "scene4"
+            },
+            "outcomes": {
+                "Climb down": { "text": "You slowly descend the rocky cliffside.", "background": "cliff.jpg", "death": false },
+                "Jump": { "text": "You leap into the unknown...", "background": "jump.jpg", "death": true },
+                "Go back": { "text": "You cautiously step back into the fog.", "background": "fog.jpg", "death": false }
             }
         }
     }

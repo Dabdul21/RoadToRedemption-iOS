@@ -1,9 +1,8 @@
 import SwiftUI
 
 struct WelcomeScreen: View {
-    @StateObject var audioManager = AudioManager.shared
-    @State private var navigateToSelection = false
     @EnvironmentObject var gameManager: GameManager
+    @State private var navigateToSelection = false  // ✅ Control navigation manually
 
     var body: some View {
         NavigationStack {
@@ -12,7 +11,6 @@ struct WelcomeScreen: View {
                     .resizable()
                     .scaledToFit()
                     .ignoresSafeArea()
-                    .frame(width: 450, height: 1190)
 
                 VStack {
                     RoundedRectangle(cornerRadius: 15)
@@ -21,15 +19,17 @@ struct WelcomeScreen: View {
                         .overlay(
                             Text("PLAY")
                                 .foregroundColor(.white)
-                                .font(.system(size: 30, weight: .bold)))
+                                .font(.system(size: 30, weight: .bold))
+                        )
                 }
                 .offset(y: -100)
             }
             .onTapGesture {
+                gameManager.resetGame()  // ✅ Reset everything before navigating
                 navigateToSelection = true
             }
             .navigationDestination(isPresented: $navigateToSelection) {
-                PlayerSelectionView(gameManager: gameManager) // ✅ Navigates to selection first
+                PlayerSelectionView().environmentObject(gameManager)  // ✅ Navigate properly
             }
         }
     }

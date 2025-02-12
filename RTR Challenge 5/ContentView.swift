@@ -4,24 +4,20 @@
 //
 //  Created by Dayan Abdulla on 1/23/25.
 //
+
 import SwiftUI
 
 struct ContentView: View {
     @StateObject var audioManager = AudioManager.shared
-    @StateObject var gameManager = GameManager() // Create a single instance
 
-    
+    @EnvironmentObject var gameManager: GameManager  // ✅ Expect GameManager as an EnvironmentObject
+
     var body: some View {
         WelcomeScreen()
-            .environmentObject(audioManager) // Pass the AudioManager
-            .environmentObject(gameManager) // Pass GameManager globally
-        
-
+            .environmentObject(gameManager)  // ✅ Pass GameManager to WelcomeScreen
     }
 }
 
 #Preview {
-    ContentView()
-        .environmentObject(GameManager()) // ✅ Fix missing GameManager for preview
-
+    ContentView().environmentObject(GameManager())  // ✅ Ensure preview works
 }

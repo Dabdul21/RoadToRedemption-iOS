@@ -1,8 +1,9 @@
 import SwiftUI
 
 struct ScreenOne: View {
-    @ObservedObject var gameManager: GameManager
+    @EnvironmentObject var gameManager: GameManager
     @State private var isBottomSheetVisible = false
+    @Environment(\.presentationMode) var presentationMode  // ✅ Used for dismissing current view
 
     var body: some View {
         ZStack {
@@ -14,52 +15,67 @@ struct ScreenOne: View {
             VStack {
                 Spacer().frame(height: 230)
 
-                // ✅ Ensure the character is set, otherwise show an error
-                if let character = gameManager.selectedCharacter {
-                    VStack(spacing: 10) {
-                        if let storyNode = gameManager.story[character]?[gameManager.currentStoryNode] {
-                            
+                if gameManager.isGameOver {
+                    VStack {
+                        Text("YOU DIED")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.red)
+                            .shadow(radius: 10)
+                            .padding()
+
+                        Button("Restart") {
+                            gameManager.resetGame()
+                        }
+                        .font(.title2)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
+                } else {
+                    if let character = gameManager.selectedCharacter,
+                       let storyNode = gameManager.story[character]?[gameManager.currentStoryNode] {
+
+                        VStack(spacing: 10) {
                             ForEach(storyNode.choices.keys.sorted(), id: \.self) { choice in
-                                if let outcome = storyNode.outcomes?[choice] {
-                                    Button(action: {
-                                        gameManager.selectedOutcome = outcome
-                                        gameManager.showingOutcome = true
-                                    }) {
-                                        ZStack {
-                                            Image("ButtonTemplate")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 380, height: 155)
-                                            
-                                            Text(choice)
-                                                .font(.headline)
-                                                .foregroundColor(.white)
-                                                .shadow(radius: 2)
-                                        }
+                                Button(action: {
+                                    gameManager.chooseOption(choice)
+                                }) {
+                                    ZStack {
+                                        Image("ButtonTemplate")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 380, height: 155)
+
+                                        Text(choice)
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                            .shadow(radius: 2)
                                     }
-                                    .frame(width: 300, height: 65)
                                 }
+                                .frame(width: 300, height: 65)
                             }
                         }
+                        .padding(.leading, 11)
+                    } else {
+                        Text("No Story Found")
+                            .foregroundColor(.red)
+                            .font(.title)
+                            .bold()
                     }
-                    .padding(.leading, 11)
-                } else {
-                    Text("Error: No Character Selected").foregroundColor(.red).bold()
                 }
 
                 Spacer()
 
-                // ✅ Story preview inside a bottom rectangle
+                // ✅ Show BottomView for Story Text
                 if let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
-                    
-                    let previewText = String(storyText.prefix(80)) + "..." // ✅ Show first 80 characters
-                    
-                    RoundedRectangle(cornerRadius: 40)
+                    RoundedRectangle(cornerRadius: 20)
                         .fill(Color.black.opacity(0.7))
-                        .frame(width: 370, height: 100)
+                        .frame(width: 370, height: 200)
                         .overlay(
-                            Text(previewText)
+                            Text(storyText)
                                 .foregroundColor(.white)
                                 .padding()
                                 .multilineTextAlignment(.center)
@@ -76,13 +92,29 @@ struct ScreenOne: View {
                 isVisible: $isBottomSheetVisible,
                 storyText: gameManager.story[gameManager.selectedCharacter ?? ""]?[gameManager.currentStoryNode]?.text ?? "No Story Found"
             )
-            .presentationDetents([.medium]) // ✅ Only opens halfway
         }
-        .fullScreenCover(isPresented: $gameManager.showingOutcome) {
+        .sheet(isPresented: $gameManager.showingOutcome) {
             if let outcome = gameManager.selectedOutcome {
                 ChoiceOutcomeView(outcome: outcome, showOutcome: $gameManager.showingOutcome)
             }
         }
-        .navigationBarBackButtonHidden(false)
+        // ✅ Detect when the game resets and navigate back to WelcomeScreen
+        .onChange(of: gameManager.goToWelcomeScreen) { newValue in
+            if newValue {
+                gameManager.goToWelcomeScreen = false  // Reset the flag
+                navigateToWelcomeScreen()
+            }
+        }
+    }
+
+    // ✅ Function to navigate back to WelcomeScreen correctly
+    private func navigateToWelcomeScreen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = scene.windows.first {
+                window.rootViewController = UIHostingController(rootView: WelcomeScreen().environmentObject(GameManager()))
+                window.makeKeyAndVisible()
+            }
+        }
     }
 }
