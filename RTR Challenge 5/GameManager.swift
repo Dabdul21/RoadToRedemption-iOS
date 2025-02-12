@@ -69,15 +69,18 @@ class GameManager: ObservableObject {
     
     
     func resetGame() {
+        print("🔄 Game Reset Triggered!")  // ✅ Log reset call
         selectedCharacter = nil
         currentStoryNode = "start"
         showingOutcome = false
         selectedOutcome = nil
         isGameOver = false
-        goToWelcomeScreen = true  // ✅ Trigger navigation reset
+        goToWelcomeScreen = true  // ✅ Signal navigation reset
         loadStory()
-        print("🔄 Game Reset: Returning to WelcomeScreen")
+        print("✅ GameManager: goToWelcomeScreen = \(goToWelcomeScreen)")  // ✅ Log the flag
     }
+
+
 
 }
     

@@ -3,7 +3,6 @@ import SwiftUI
 struct ScreenOne: View {
     @EnvironmentObject var gameManager: GameManager
     @State private var isBottomSheetVisible = false
-    @Environment(\.presentationMode) var presentationMode  // ✅ Used for dismissing current view
 
     var body: some View {
         ZStack {
@@ -26,6 +25,7 @@ struct ScreenOne: View {
 
                         Button("Restart") {
                             gameManager.resetGame()
+                            forceResetToWelcomeScreen()  // ✅ Force reset
                         }
                         .font(.title2)
                         .padding()
@@ -68,7 +68,7 @@ struct ScreenOne: View {
 
                 Spacer()
 
-                // ✅ Show BottomView for Story Text
+                // ✅ Restored BottomView for Story Text
                 if let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
                     RoundedRectangle(cornerRadius: 20)
@@ -98,20 +98,14 @@ struct ScreenOne: View {
                 ChoiceOutcomeView(outcome: outcome, showOutcome: $gameManager.showingOutcome)
             }
         }
-        // ✅ Detect when the game resets and navigate back to WelcomeScreen
-        .onChange(of: gameManager.goToWelcomeScreen) { newValue in
-            if newValue {
-                gameManager.goToWelcomeScreen = false  // Reset the flag
-                navigateToWelcomeScreen()
-            }
-        }
     }
 
-    // ✅ Function to navigate back to WelcomeScreen correctly
-    private func navigateToWelcomeScreen() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+    // ✅ Forcefully reset navigation to WelcomeScreen
+    private func forceResetToWelcomeScreen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = scene.windows.first {
+                print("🎯 ScreenOne: Forcing reset to WelcomeScreen!")  // ✅ Debug navigation
                 window.rootViewController = UIHostingController(rootView: WelcomeScreen().environmentObject(GameManager()))
                 window.makeKeyAndVisible()
             }
