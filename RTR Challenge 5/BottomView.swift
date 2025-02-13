@@ -11,7 +11,7 @@ struct BottomView: View {
 
             VStack {
                 Text(storyText)
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -27,7 +27,7 @@ struct BottomView: View {
                     }
                 }) {
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 30))
+                        .font(.system(size: 35, weight: .bold))
                         .foregroundColor(.red.opacity(0.9))
                         .padding()
                 }
@@ -36,7 +36,7 @@ struct BottomView: View {
             .frame(maxWidth: .infinity)
             .padding()
         }
-        .presentationDetents([.medium]) // ✅ Bottom sheet only expands halfway
+        .presentationDetents([.height(480)]) // ✅ Bottom sheet only expands halfway
     }
 }
 

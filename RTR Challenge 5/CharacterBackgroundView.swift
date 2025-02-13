@@ -8,7 +8,7 @@ struct CharacterBackgroundView: View {
         ZStack {
             // ✅ Ensure only ONE background shows
             if let character = gameManager.selectedCharacter {
-                Image(character == "Aldreic" ? "BG_Aldreic" : "BG_Thane")
+                Image(character == "Aldreic" ? "Aldric" : "Thane")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
@@ -17,27 +17,28 @@ struct CharacterBackgroundView: View {
             VStack {
                 // ✅ Ensure only ONE story shows
                 Text(gameManager.selectedCharacter == "Aldreic" ? aldreicStory : thaneStory)
-                    .font(.custom("STFangsong", size: 23))
+                    .font(.system(size: 22)).bold()
                     .foregroundColor(.white)
+                    .shadow(radius: 2)
                     .multilineTextAlignment(.center)
                     .padding()
-                    .frame(maxWidth: 350, maxHeight: 310)
-                    .background(Color.black.opacity(0.7))
+                    .frame(maxWidth: 350, maxHeight: 230)
+                    .background(Color.black.opacity(0.1))
                     .cornerRadius(20)
-                    .offset(y:-100)
+                    .offset(y:-205)
 
-                Button("Continue") {
+                Button("Tap Anywhere") {
                     navigateToStory = true
                 }
-                .font(.title2)
-                .padding()
-                .frame(width: 200)
-                .background(Color.white.opacity(0.8))
-                .foregroundColor(.black)
-                .cornerRadius(20)
-                .shadow(radius: 8)
+                .foregroundColor(.white)
+                .font(.system(size: 12, weight: .ultraLight))
+                .offset(y:200)
             }
         }
+        .contentShape(Rectangle())  // ✅ Makes the whole screen tappable
+                .onTapGesture {
+                    navigateToStory = true  // ✅ Navigate when tapped anywhere
+                }
         .navigationDestination(isPresented: $navigateToStory) {
             ScreenOne().environmentObject(gameManager)
         }
@@ -45,14 +46,15 @@ struct CharacterBackgroundView: View {
 
     private var aldreicStory: String {
         """
-        Born into poverty in the village of Valleys, Aldric was a boy fueled by dreams of glory and a heart aflame with courage. He grew up next to Thane, an ingenious but frail friend whose ambitions lay elsewhere. Together, they survived harsh winters and looming war—until the news that raiders from a distant land descended on their home.
+        A survivor forged by hardship, Aldric rises from nothing with unyielding determination. 
+        Where others falter, he endures—driven not by fate, but by sheer will. 
         """
     }
 
     private var thaneStory: String {
         """
-        A strategist whose mind weaves through the battlefield like a blade, Thane fights with intelligence and foresight. 
-        Every step he takes is calculated, every move a dance of precision.
+        A scholar of the unseen, he unravels mysteries that others fear to question. 
+        Where others see the world as it is, he sees what it could become.
         """
     }
 }

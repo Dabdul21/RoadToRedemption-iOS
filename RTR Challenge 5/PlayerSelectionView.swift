@@ -7,58 +7,74 @@ struct PlayerSelectionView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Image("")
+                Image("SelectBG")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
-                    .overlay(Color.orange.opacity(0.5))
+                    .offset(CGSize(width: 0, height: -10))
+                
+                Image("LargeScrollBG")
+                    .resizable()
+                    .scaledToFit()
+                    .overlay(
+                        Text("""
+                                    Two lives intertwined by fate,
+                                     yet shaped by choice.
 
-                VStack(spacing: 30) {
-                    Text("Two lives intertwined by fate, yet shaped by different choices.\nOne a shield of courage, the other a mind of ingenuity.\nTheir journeys are yours to decide.\n \nChoose the path that speaks to you.")
-                        .font(.custom("STFangsong", size: 23))
-                        .foregroundColor(.white)
-                        .bold()
-                        .multilineTextAlignment(.center)
-                        .shadow(radius: 5)
-                        .padding()
-                        .frame(maxWidth: 370, maxHeight: 300)
-                        .background(Color.black.opacity(0.7))
-                        .cornerRadius(20)
-                        .offset(y: -240)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 60)
+                               Their journeys are yours to decide
+                             
+                                       Which path will you walk?
+                             
+                             
+                             """)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.black)
+                            .shadow(color: .white, radius: 0.2)
+                            .frame(alignment: .center)
+                    )
+                    .offset(y: -215)
+                    .frame(width: 360, height: 380)
 
-                VStack(spacing: 20) {
+
+                
+                VStack(spacing: 95) {
                     Button(action: {
                         gameManager.selectCharacter("Aldreic") // ✅ Save selection
                         navigateToBackground = true
                     }) {
-                        Text("Aldreic")
-                            .font(.custom("STFangsong", size: 28))
-                            .padding()
-                            .frame(width: 250)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.black]), startPoint: .top, endPoint: .bottom))
-                            .foregroundColor(.white)
-                            .cornerRadius(20)
-                            .shadow(radius: 8)
-                    }
+                        Image("SScroll")
+                            .resizable()
+                            .frame(width: 280, height: 110)
+                            .overlay(
+                                Text("Aldric")
+                                    .font(.system(size: 26, weight: .bold))
+                                    .foregroundColor(.black)
+                                    .shadow(color: .white, radius: 0.2)
+                            )
+                            .offset(y: 65)
 
+
+                    }
+                    
                     Button(action: {
                         gameManager.selectCharacter("Thane") // ✅ Save selection
                         navigateToBackground = true
                     }) {
+                        Image("SScroll")
+                            .resizable()
+                            .frame(width: 280, height: 110)
+                            .overlay(
+                        
                         Text("Thane")
-                            .font(.custom("STFangsong", size: 28))
-                            .padding()
-                            .frame(width: 250)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.black]), startPoint: .top, endPoint: .bottom))
-                            .foregroundColor(.white)
-                            .cornerRadius(20)
-                            .shadow(radius: 8)
+                            .font(.system(size: 26, weight: .bold))
+                            .foregroundColor(.black)
+                            .shadow(color: .white, radius: 0.2)
+                        )
+                            .offset(y:-3)
+
                     }
                 }
-                .padding(.top, 70)
+                .padding(.top, 80)
 
             }
             .navigationDestination(isPresented: $navigateToBackground) {

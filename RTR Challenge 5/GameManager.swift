@@ -7,7 +7,7 @@ class GameManager: ObservableObject {
     @Published var selectedOutcome: StoryOutcome? = nil
     @Published var isGameOver: Bool = false
     @Published var story: [String: [String: StoryNode]] = [:]
-    @Published var goToWelcomeScreen: Bool = false  // ✅ New state for reset navigation
+    @Published var goToWelcomeScreen: Bool = false  // New state for reset navigation
     
     init() {
         loadStory()
@@ -19,9 +19,9 @@ class GameManager: ObservableObject {
                 let data = try Data(contentsOf: url)
                 
                 // ✅ Print raw JSON before decoding
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("📜 Raw JSON: \(jsonString)")
-                }
+//                if let jsonString = String(data: data, encoding: .utf8) {
+//                    print("📜 Raw JSON: \(jsonString)")
+//                }
 
                 let decodedData = try JSONDecoder().decode([String: [String: StoryNode]].self, from: data)
                 self.story = decodedData
