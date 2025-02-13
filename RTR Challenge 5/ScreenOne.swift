@@ -20,7 +20,7 @@ struct ScreenOne: View {
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.red)
-                            .shadow(radius: 10)
+                            .shadow(radius: 5)
                             .padding()
 
                         Button("Restart") {
@@ -37,21 +37,21 @@ struct ScreenOne: View {
                     if let character = gameManager.selectedCharacter,
                        let storyNode = gameManager.story[character]?[gameManager.currentStoryNode] {
 
-                        VStack(spacing: 30) {
+                        VStack(spacing: 25) { // how spaced out each button is from each other
                             ForEach(storyNode.choices.keys.sorted(), id: \.self) { choice in
                                 Button(action: {
                                     gameManager.chooseOption(choice)
                                 }) {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 15)
-                                            .fill(Color.black.opacity(0.7)) // Semi-transparent black
-                                            .frame(width: 370, height: 80) // Adjusted size to match original button
+                                            .fill(Color.black.opacity(0.7))
+                                            .frame(width: 370, height: 80)
                                             .overlay(
                                                 Text(choice)
                                                     .font(.headline)
                                                     .foregroundColor(.white)
                                                     .shadow(radius: 2)
-                                                    .frame(width: 340, height: 80) // Adjusted size to match original button
+                                                    .frame(width: 340, height: 80)
                                                     .multilineTextAlignment(.center)
                                                     .padding(.horizontal, 20)
 
@@ -62,7 +62,9 @@ struct ScreenOne: View {
 //                                .frame(width: 370, height: 65)
                             }
                         }
-                        .padding(.leading, 11)
+                        .padding(.top, -40) // Move buttons up on the screen
+
+//                        .padding(.leading, 11)
                     } else {
                         Text("No Story Found")
                             .foregroundColor(.red)
@@ -76,14 +78,14 @@ struct ScreenOne: View {
                 // ✅ Restored BottomView for Story Text
                 if let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
-                    let storyText = String(storyText.prefix(85)) + " ..." // ✅ Show first 80 characters
+                    let storyText = String(storyText.prefix(95)) + "...." // ✅ Show first 80 characters
 
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.black.opacity(0.7))
                         .frame(width: 370, height: 150)
                         .overlay(
                             Text(storyText)
-                                .font(.system(size: 22)).bold()
+                                .font(.system(size: 20)).bold()
                                 .foregroundColor(.white)
                                 .shadow(radius: 2)
                                 .padding()
@@ -92,7 +94,7 @@ struct ScreenOne: View {
                         .onTapGesture {
                             isBottomSheetVisible = true
                         }
-                        .padding(.bottom, 100)
+                        .padding(.bottom, 150) //moves the story up
                 }
             }
         }
@@ -111,7 +113,7 @@ struct ScreenOne: View {
 
     // ✅ Forcefully reset navigation to WelcomeScreen
     private func forceResetToWelcomeScreen() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = scene.windows.first {
                 print("🎯 ScreenOne: Forcing reset to WelcomeScreen!")  // ✅ Debug navigation

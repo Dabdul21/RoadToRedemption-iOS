@@ -21,7 +21,7 @@
                 "Play with Thane, he insists it’s a beutiful day.": {
                     "text": "The warmth of the sun and laughter make the day feel endless—until it isn’t. There's a  figure approaching from the distance, it's unfamiliar and unsteady. Then, you see it—something sickly, reaking of death.",
                     "background": "door.jpg",
-                    "death": false
+                    "death": true
                 }
             }
         },
@@ -128,7 +128,7 @@
             }
         },
 
-        "Stranger_By_Lake": {
+        "Sparring": {
             "text": "You prepare for battle as the stranger charges toward you!",
             "choices": {
                 "Fight back": "scene10",
