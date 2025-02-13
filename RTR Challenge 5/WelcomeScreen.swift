@@ -1,40 +1,38 @@
 import SwiftUI
 
 struct WelcomeScreen: View {
-    @StateObject var audioManager = AudioManager.shared
-    @State private var navigateToNextScreen = false // Track navigation state
+    @EnvironmentObject var gameManager: GameManager
+    @State private var navigateToSelection = false  //  Control navigation manually
 
     var body: some View {
         NavigationStack {
             ZStack {
-                Image("BG")
+                Image("WelcomeBG")
                     .resizable()
                     .scaledToFit()
                     .ignoresSafeArea()
-                    .frame(width: 450, height: 1190)
-
+                    .frame(width: 450, height: 930)
                 VStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.black)
-                        .frame(width: 200, height: 50)
-                        .overlay(
-                            Text("PLAY")
-                                .foregroundColor(.white)
-                                .font(.system(size: 30, weight: .bold)))
+                    
+                Text("Tap Anywhere")
+                    .foregroundColor(.white)
+                    .font(.system(size: 12, weight: .ultraLight))
+                        
                 }
-                .offset(y: -100) // Increase negative value to move it higher
-
+                .offset(y: 385)
             }
+            .offset(y:-50)
             .onTapGesture {
-                navigateToNextScreen = true // Trigger navigation on tap
+                gameManager.resetGame()  //  Reset everything before navigating
+                navigateToSelection = true
             }
-            .navigationDestination(isPresented: $navigateToNextScreen) {
-                ScreenOne() // Navigate to ScreenOne on tap
+            .navigationDestination(isPresented: $navigateToSelection) {
+                PlayerSelectionView().environmentObject(gameManager)  //  Navigate properly
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    WelcomeScreen().environmentObject(GameManager())
 }

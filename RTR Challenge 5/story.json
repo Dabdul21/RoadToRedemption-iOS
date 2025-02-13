@@ -1,0 +1,183 @@
+{
+    "Aldreic": {
+        "start": {
+            "text": "The village hums with its usual calm, and your trusted friend stands beside you. Will you spend the day preparing for what lies ahead or savoring a rare moment of peace with your closest companion?",
+            "choices": {
+                "Help fortify the village with the elders.":                      "Choose_Weapon",
+                "Practice sparring on your own. You could use the practice..":                                                                                                          "Sparring",
+                "Play with Thane, he insists it’s a beutiful day.":               "Play_With_Thane"
+            },
+            "outcomes": {
+                "Help fortify the village with the elders.": {
+                    "text": "You reinforce the village walls and mend gaps in old traps. As you work, an unease feeling settles over you... Somethings off—like a storm is on the horizon",
+                    "background": "castle.jpg",
+                    "death": false
+                },
+                "Practice sparring on your own. You could use the practice..": {
+                    "text": "You step beyond the village, venturing deep into the forest. The quiet surrounds you as you ready your stance—each strike, each movement sharpening your skill. But in the stillness, something watches.",
+                    "background": "forest.jpg",
+                    "death": false
+                },
+                "Play with Thane, he insists it’s a beutiful day.": {
+                    "text": "The warmth of the sun and laughter make the day feel endless—until it isn’t. There's a  figure approaching from the distance, it's unfamiliar and unsteady. Then, you see it—something sickly, reaking of death.",
+                    "background": "door.jpg",
+                    "death": false
+                }
+            }
+        },
+        "Choose_Weapon": {
+            "text": "Chaos erupts as word spreads—raiders are pillaging nearby farms. The village stirs in panic, scrambling for a defense, but fear grips the air like a storm on the horizon. There’s no time to hesitate. What will you do?",
+            "choices": {
+                "Take a stand and fight for your home, rallying alongside the villagers to defend what little you have.":                                                                                                       "WeaponSelected",
+                "Panic takes hold, your mind racing as the chaos around you drowns out reason.":                                                                                                                           "Weapon_Selected",
+                "Abandon the village before it’s too late, slipping away while there’s still time to escape.":                                                                                                                  "Abandon_Village"
+            },
+            "outcomes": {
+                "Take a stand and fight for your home, rallying alongside the villagers to defend what little you have.": {
+                    "text": "This village is everything you know, and you refuse to let it fall. Gripping whatever weapon you can find, you prepare to face the coming storm—no matter the cost. The elders bark orders, rallying those willing to fight. The air is thick with tension, the weight of what’s to come settling deep in your chest.",
+                    "background": "mist.jpg",
+                    "death": false
+                },
+                "Panic takes hold, your mind racing as the chaos around you drowns out reason.": {
+                    "text": "Your heart pounds, and your breath quickens. The shouting, the chaos—it all blurs together. Your legs refuse to move as dread roots you to the ground. Every instinct screams at you to run, to fight, to do something—but fear has locked you in place. If you don’t act soon, the choice will no longer be yours to make.",
+                    "background": "duel.jpg",
+                    "death": false
+                },
+                "Abandon the village before it’s too late, slipping away while there’s still time to escape.": {
+                    "text": "This village is everything you know, and you refuse to let it fall. Gripping whatever weapon you can find, you prepare to face the coming storm—no matter the cost. The elders bark orders, rallying those willing to fight. The air is thick with tension, the weight of what’s to come settling deep in your chest.",
+                    "background": "forest.jpg",
+                    "death": false
+                }
+            }
+        },
+        "Weapon_Selected": {
+            "text": "Word spreads that hostile raiders are attacking nearby farms. The villagers scramble to plan a defense, but panic is in the air.",
+            "choices": {
+                "Ignore them": "scene4",
+                "Confront them": "scene5",
+                "Run away": "scene6"
+            },
+            "outcomes": {
+                "Ignore them": {
+                    "text": "The figure disappears into the mist.",
+                    "background": "mist.jpg",
+                    "death": false
+                },
+                "Confront them": {
+                    "text": "The stranger draws their weapon!",
+                    "background": "duel.jpg",
+                    "death": false
+                },
+                "Run away": {
+                    "text": "You sprint into the woods, your heart racing.",
+                    "background": "forest.jpg",
+                    "death": false
+                }
+            }
+        },
+        
+        "Abandon_Village": {
+            "text": "Aldreic decides to walk away, but something feels off. A figure watches from the shadows.",
+            "choices": {
+                "Ignore them": "scene4",
+                "Confront them": "scene5",
+                "Run away": "scene6"
+            },
+            "outcomes": {
+                "Ignore them": {
+                    "text": "The figure disappears into the mist.",
+                    "background": "mist.jpg",
+                    "death": false
+                },
+                "Confront them": {
+                    "text": "The stranger draws their weapon!",
+                    "background": "duel.jpg",
+                    "death": false
+                },
+                "Run away": {
+                    "text": "You sprint into the woods, your heart racing.",
+                    "background": "forest.jpg",
+                    "death": false
+                }
+            }
+        },
+
+        "Play_With_Thane": {
+            "text": "Aldreic continues on his journey, but the mist thickens, making it difficult to see.",
+            "choices": {
+                "Move forward": "scene8",
+                "Wait for it to clear": "scene9",
+                "Turn back": "start"
+            },
+            "outcomes": {
+                "Move forward": {
+                    "text": "You walk blindly through the fog.",
+                    "background": "fog.jpg",
+                    "death": false
+                },
+                "Wait for it to clear": {
+                    "text": "A shadowy figure approaches.",
+                    "background": "shadow.jpg",
+                    "death": false
+                },
+                "Turn back": {
+                    "text": "You return to the castle gates.",
+                    "background": "castle.jpg",
+                    "death": false
+                }
+            }
+        },
+
+        "Stranger_By_Lake": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene12"
+            },
+            "outcomes": {
+                "Fight back": {
+                    "text": "You clash swords with the stranger!",
+                    "background": "battle.jpg",
+                    "death": false
+                },
+                "Dodge and counter": {
+                    "text": "You skillfully evade the attack.",
+                    "background": "evade.jpg",
+                    "death": false
+                },
+                "Try to talk": {
+                    "text": "The stranger hesitates but stays on guard.",
+                    "background": "talk.jpg",
+                    "death": false
+                }
+            }
+        },
+
+        "scene8": {
+            "text": "Aldreic emerges from the mist and finds himself at the edge of a cliff.",
+            "choices": {
+                "Climb down": "scene13",
+                "Jump": "scene14",
+                "Go back": "scene4"
+            },
+            "outcomes": {
+                "Climb down": {
+                    "text": "You slowly descend the rocky cliffside.",
+                    "background": "cliff.jpg",
+                    "death": false
+                },
+                "Jump": {
+                    "text": "You leap into the unknown...",
+                    "background": "jump.jpg",
+                    "death": true
+                },
+                "Go back": {
+                    "text": "You cautiously step back into the fog.",
+                    "background": "fog.jpg",
+                    "death": false
+                }
+            }
+        }
+    }
+}

@@ -1,67 +1,49 @@
-//
-//  BottomView.swift
-//  RTR Challenge 5
-//
-//  Created by Dayan Abdulla on 1/30/25.
 import SwiftUI
 
 struct BottomView: View {
     @Binding var isVisible: Bool
-    @State private var textSize: CGFloat = 16 // Default text size
+    var storyText: String
 
     var body: some View {
         ZStack {
-            // Blurred Background (behind the bottom sheet)
             VisualEffectBlur()
                 .edgesIgnoringSafeArea(.all)
 
             VStack {
-                // Read More Text
-                Text("Read More..")
-                    .font(.system(size: textSize, weight: .bold))
-                    .foregroundColor(.white) // Slightly transparent white
-
+                Text(storyText)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
                     .padding()
 
-                Spacer() // Pushes the close button down
+                Spacer()
 
-                // Close Button (Now an "X" Icon with Vibration)
+                // ✅ Close Button with Haptic Feedback
                 Button(action: {
-                    // Add Haptic Feedback (Vibration)
                     let generator = UIImpactFeedbackGenerator(style: .light)
                     generator.impactOccurred()
-
-                    withAnimation(.easeOut(duration: 0.3)) { // Smooth fade-out effect
-                        isVisible = false // Dismiss the BottomView
+                    withAnimation(.easeOut(duration: 0.3)) {
+                        isVisible = false
                     }
                 }) {
-                    Image(systemName: "xmark.circle.fill") // "X" icon
-                        .font(.system(size: 30))
-                        .foregroundColor(.red.opacity(0.9)) // Slightly transparent white
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 35, weight: .bold))
+                        .foregroundColor(.red.opacity(0.9))
                         .padding()
                 }
-                .padding(.bottom, 20) // Adds spacing from bottom
+                .padding(.bottom, 20)
             }
             .frame(maxWidth: .infinity)
             .padding()
-            .foregroundColor(.black)
-            .presentationDetents([.medium]) // Only allows medium detent
-            .onChange(of: isVisible) {
-                withAnimation {
-                    textSize = isVisible ? 16 : 22 // Dynamically adjusts text size
-                }
-            }
-            .onAppear {
-                textSize = 16 // Resets text size when opened
-            }
         }
+        .presentationDetents([.height(480)]) // ✅ Bottom sheet only expands halfway
     }
 }
 
-// Blurred Background Effect
+// ✅ Restore VisualEffectBlur
 struct VisualEffectBlur: UIViewRepresentable {
     func makeUIView(context: Context) -> UIVisualEffectView {
-        let blurEffect = UIBlurEffect(style: .systemMaterialDark) // Adjust blur style if needed
+        let blurEffect = UIBlurEffect(style: .systemMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         return blurView
     }
@@ -71,6 +53,6 @@ struct VisualEffectBlur: UIViewRepresentable {
 
 struct BottomView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomView(isVisible: .constant(true))
+        BottomView(isVisible: .constant(true), storyText: "This is the story text.")
     }
 }
