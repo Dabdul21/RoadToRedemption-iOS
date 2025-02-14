@@ -29,18 +29,6 @@ struct ScreenOne: View {
                                 .foregroundColor(.red)
                                 .shadow(radius: 1)
                                 .offset(y: 15)
-                            
-//                            Text(
-//                                "YOU MADE SOME AMBITIOUS DECISIONS AND IT DID NOT END WELL....")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.white)
-//                            .padding()
-//                            .shadow(radius: 1)
-//                            .offset(y: -170)
-//                            .frame(maxWidth: 350) // Allows text to wrap properly without being cut off
-//                            .multilineTextAlignment(.center) // Centers text nicely
-
-                            
 
                             Text("Tap anywhere to replay")
                                 .font(.title3)
@@ -54,7 +42,7 @@ struct ScreenOne: View {
                     .contentShape(Rectangle()) // Ensures full screen is tappable
                     .onTapGesture {
                         gameManager.resetGame()
-                        forceResetToWelcomeScreen() // ✅ Restart game
+                        forceResetToWelcomeScreen() // Restart game
                     }
 
                 } else {
@@ -103,14 +91,14 @@ struct ScreenOne: View {
                 if !gameManager.isGameOver,
                     let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
-                    let storyText = String(storyText.prefix(95)) + " ... Expand Text" // ✅ Show first 80 characters
+                    let storyText = String(storyText.prefix(95)) + " ... Expand Text" // Show first 80 characters
 
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.black.opacity(0.6))
-                        .frame(width: 370, height: 150)
+                        .frame(width: 370, height: 160)
                         .overlay(
                             Text(storyText)
-                                .font(.system(size: 20)).bold()
+                                .font(.headline) //was  .font(.system(size: 20)).bold()
                                 .foregroundColor(.white)
                                 .shadow(radius: 2)
                                 .padding()
@@ -119,7 +107,7 @@ struct ScreenOne: View {
                         .onTapGesture {
                             isBottomSheetVisible = true
                         }
-                        .padding(.bottom, 150) //moves the story up
+                        .padding(.bottom, 140) //moves the story up
                 }
             }
         }
@@ -136,7 +124,7 @@ struct ScreenOne: View {
         }
     }
 
-    // ✅ Forcefully reset navigation to WelcomeScreen
+    // Forcefully reset navigation to WelcomeScreen
     private func forceResetToWelcomeScreen() {
         gameManager.isGameOver = false // Hide "YOU DIED" screen first
 

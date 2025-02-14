@@ -11,14 +11,14 @@ struct BottomView: View {
 
             VStack {
                 Text(storyText)
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Spacer()
 
-                // ✅ Close Button with Haptic Feedback
+                // Close Button with Haptic Feedback
                 Button(action: {
                     let generator = UIImpactFeedbackGenerator(style: .light)
                     generator.impactOccurred()
@@ -36,11 +36,11 @@ struct BottomView: View {
             .frame(maxWidth: .infinity)
             .padding()
         }
-        .presentationDetents([.height(480)]) // ✅ Bottom sheet only expands halfway
+        .presentationDetents([.height(505)]) // Bottom sheet only expands halfway
     }
 }
 
-// ✅ Restore VisualEffectBlur
+// VisualEffectBlur
 struct VisualEffectBlur: UIViewRepresentable {
     func makeUIView(context: Context) -> UIVisualEffectView {
         let blurEffect = UIBlurEffect(style: .systemMaterialDark)

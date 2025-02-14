@@ -21,12 +21,12 @@ struct ChoiceOutcomeView: View {
 
             VStack {
                 Text(outcome.text)
-                    .font(.custom("STFangsong", size: 22))
+                    .font(.system(size: 22))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
                     .frame(maxWidth: 350)
-                    .background(Color.black.opacity(0.3))
+                    .background(Color.black.opacity(0.4))
                     .cornerRadius(15)
             }
         }
