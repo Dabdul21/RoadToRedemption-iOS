@@ -242,6 +242,135 @@
                 }
             }
         },
+        "": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene11"
+            },
+            "outcomes": {
+                "Fight back": {
+                    "text": "You clash swords with the stranger!",
+                    "background": "battle.jpg",
+                    "death": false
+                },
+                "Dodge and counter": {
+                    "text": "You skillfully evade the attack.",
+                    "background": "evade.jpg",
+                    "death": false
+                },
+                "Try to talk": {
+                    "text": "The stranger hesitates but stays on guard.",
+                    "background": "talk.jpg",
+                    "death": false
+                }
+            }
+        },
+        
+        "": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene11"
+            },
+            "outcomes": {
+                "Fight back": {
+                    "text": "You clash swords with the stranger!",
+                    "background": "battle.jpg",
+                    "death": false
+                },
+                "Dodge and counter": {
+                    "text": "You skillfully evade the attack.",
+                    "background": "evade.jpg",
+                    "death": false
+                },
+                "Try to talk": {
+                    "text": "The stranger hesitates but stays on guard.",
+                    "background": "talk.jpg",
+                    "death": false
+                }
+            }
+        },
+        
+        "": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene11"
+            },
+            "outcomes": {
+                "Fight back": {
+                    "text": "You clash swords with the stranger!",
+                    "background": "battle.jpg",
+                    "death": false
+                },
+                "Dodge and counter": {
+                    "text": "You skillfully evade the attack.",
+                    "background": "evade.jpg",
+                    "death": false
+                },
+                "Try to talk": {
+                    "text": "The stranger hesitates but stays on guard.",
+                    "background": "talk.jpg",
+                    "death": false
+                }
+            }
+        },
+        
+        "": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene11"
+            },
+            "outcomes": {
+                "Fight back": {
+                    "text": "You clash swords with the stranger!",
+                    "background": "battle.jpg",
+                    "death": false
+                },
+                "Dodge and counter": {
+                    "text": "You skillfully evade the attack.",
+                    "background": "evade.jpg",
+                    "death": false
+                },
+                "Try to talk": {
+                    "text": "The stranger hesitates but stays on guard.",
+                    "background": "talk.jpg",
+                    "death": false
+                }
+            }
+        },
+        
+        "": {
+            "text": "You prepare for battle as the stranger charges toward you!",
+            "choices": {
+                "Fight back": "scene10",
+                "Dodge and counter": "scene11",
+                "Try to talk": "scene11"
+            },
+            "outcomes": {
+                "Fight back": {
+                    "text": "You clash swords with the stranger!",
+                    "background": "battle.jpg",
+                    "death": false
+                },
+                "Dodge and counter": {
+                    "text": "You skillfully evade the attack.",
+                    "background": "evade.jpg",
+                    "death": false
+                },
+                "Try to talk": {
+                    "text": "The stranger hesitates but stays on guard.",
+                    "background": "talk.jpg",
+                    "death": false
+                }
+            }
+        },
         
         "Sparring": {
                     "text": "You need to sharpen your skills. The courtyard is the perfect place for practice.",
