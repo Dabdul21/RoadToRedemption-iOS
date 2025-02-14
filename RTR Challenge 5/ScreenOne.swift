@@ -6,7 +6,7 @@ struct ScreenOne: View {
 
     var body: some View {
         ZStack {
-            Image("BackGroundImg")
+            Image("OutcomeBG")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -15,24 +15,48 @@ struct ScreenOne: View {
                 Spacer().frame(height: 230)
 
                 if gameManager.isGameOver {
-                    VStack {
-                        Text("YOU DIED")
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.red)
-                            .shadow(radius: 5)
-                            .padding()
+                    ZStack {
+                        Image("SelectBG")
+                            .resizable()
+                            .scaledToFill()
+                            .ignoresSafeArea()
+                            .frame(width: 410, height: 320)
 
-                        Button("Restart") {
-                            gameManager.resetGame()
-                            forceResetToWelcomeScreen()  // ✅ Force reset
+                        VStack {
+                            Text("YOU DIED")
+                                .font(.system(size: 55, weight: .heavy, design: .default))
+                                .bold()
+                                .foregroundColor(.red)
+                                .shadow(radius: 1)
+                                .offset(y: 15)
+                            
+//                            Text(
+//                                "YOU MADE SOME AMBITIOUS DECISIONS AND IT DID NOT END WELL....")
+//                            .font(.largeTitle)
+//                            .foregroundColor(.white)
+//                            .padding()
+//                            .shadow(radius: 1)
+//                            .offset(y: -170)
+//                            .frame(maxWidth: 350) // Allows text to wrap properly without being cut off
+//                            .multilineTextAlignment(.center) // Centers text nicely
+
+                            
+
+                            Text("Tap anywhere to replay")
+                                .font(.title3)
+                                .bold()
+                                .padding()
+                                .foregroundColor(.white)
+                                .cornerRadius(2)
+                                .offset(y: -15)
                         }
-                        .font(.title2)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
                     }
+                    .contentShape(Rectangle()) // Ensures full screen is tappable
+                    .onTapGesture {
+                        gameManager.resetGame()
+                        forceResetToWelcomeScreen() // ✅ Restart game
+                    }
+
                 } else {
                     if let character = gameManager.selectedCharacter,
                        let storyNode = gameManager.story[character]?[gameManager.currentStoryNode] {
@@ -44,8 +68,8 @@ struct ScreenOne: View {
                                 }) {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 15)
-                                            .fill(Color.black.opacity(0.7))
-                                            .frame(width: 370, height: 80)
+                                            .fill(Color.black.opacity(0.6))
+                                            .frame(width: 370, height: 90)
                                             .overlay(
                                                 Text(choice)
                                                     .font(.headline)
@@ -76,12 +100,13 @@ struct ScreenOne: View {
                 Spacer()
 
                 // ✅ Restored BottomView for Story Text
-                if let character = gameManager.selectedCharacter,
+                if !gameManager.isGameOver,
+                    let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
-                    let storyText = String(storyText.prefix(95)) + "...." // ✅ Show first 80 characters
+                    let storyText = String(storyText.prefix(95)) + " ... Expand Text" // ✅ Show first 80 characters
 
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.black.opacity(0.7))
+                        .fill(Color.black.opacity(0.6))
                         .frame(width: 370, height: 150)
                         .overlay(
                             Text(storyText)
@@ -113,7 +138,9 @@ struct ScreenOne: View {
 
     // ✅ Forcefully reset navigation to WelcomeScreen
     private func forceResetToWelcomeScreen() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+        gameManager.isGameOver = false // Hide "YOU DIED" screen first
+
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = scene.windows.first {
                 print("🎯 ScreenOne: Forcing reset to WelcomeScreen!")  // ✅ Debug navigation

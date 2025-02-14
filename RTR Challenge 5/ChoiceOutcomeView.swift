@@ -1,15 +1,23 @@
 import SwiftUI
 
 struct ChoiceOutcomeView: View {
-    let outcome: StoryOutcome  // ✅ Now it should be recognized
+    let outcome: StoryOutcome
     @Binding var showOutcome: Bool
 
     var body: some View {
         ZStack {
-            Image(outcome.background)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            // Check if the image exists, otherwise use a default
+            if let uiImage = UIImage(named: outcome.background), !outcome.background.isEmpty {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            } else {
+                Image("OutcomeBG") // Replace with your default image name
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            }
 
             VStack {
                 Text(outcome.text)
@@ -18,27 +26,20 @@ struct ChoiceOutcomeView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                     .frame(maxWidth: 350)
-                    .background(Color.black.opacity(0.7))
+                    .background(Color.black.opacity(0.3))
                     .cornerRadius(15)
-
-                Button("Continue") {
-                    showOutcome = false
-                }
-                .font(.title2)
-                .padding()
-                .frame(width: 200)
-                .background(Color.white.opacity(0.8))
-                .foregroundColor(.black)
-                .cornerRadius(15)
-                .shadow(radius: 8)
             }
+        }
+        .contentShape(Rectangle()) // Ensures the whole screen is tappable
+        .onTapGesture {
+            showOutcome = false
         }
     }
 }
 
 #Preview {
     ChoiceOutcomeView(
-        outcome: StoryOutcome(text: "Sample Outcome", background: "default.jpg", death: false),
+        outcome: StoryOutcome(text: "Sample Outcome", background: "", death: false),
         showOutcome: .constant(false)
     )
 }
