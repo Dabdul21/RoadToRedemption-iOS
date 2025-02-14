@@ -6,7 +6,7 @@ struct ScreenOne: View {
 
     var body: some View {
         ZStack {
-            Image("BackGroundImg")
+            Image("OutcomeBG")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -15,43 +15,55 @@ struct ScreenOne: View {
                 Spacer().frame(height: 230)
 
                 if gameManager.isGameOver {
-                    VStack {
-                        Text("YOU DIED")
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.red)
-                            .shadow(radius: 10)
-                            .padding()
+                    ZStack {
+                        Image("SelectBG")
+                            .resizable()
+                            .scaledToFill()
+                            .ignoresSafeArea()
+                            .frame(width: 410, height: 320)
 
-                        Button("Restart") {
-                            gameManager.resetGame()
-                            forceResetToWelcomeScreen()  // ✅ Force reset
+                        VStack {
+                            Text("YOU DIED")
+                                .font(.system(size: 55, weight: .heavy, design: .default))
+                                .bold()
+                                .foregroundColor(.red)
+                                .shadow(radius: 1)
+                                .offset(y: 15)
+
+                            Text("Tap anywhere to replay")
+                                .font(.title3)
+                                .bold()
+                                .padding()
+                                .foregroundColor(.white)
+                                .cornerRadius(2)
+                                .offset(y: -15)
                         }
-                        .font(.title2)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
                     }
+                    .contentShape(Rectangle()) // Ensures full screen is tappable
+                    .onTapGesture {
+                        gameManager.resetGame()
+                        forceResetToWelcomeScreen() // Restart game
+                    }
+
                 } else {
                     if let character = gameManager.selectedCharacter,
                        let storyNode = gameManager.story[character]?[gameManager.currentStoryNode] {
 
-                        VStack(spacing: 30) {
+                        VStack(spacing: 25) { // how spaced out each button is from each other
                             ForEach(storyNode.choices.keys.sorted(), id: \.self) { choice in
                                 Button(action: {
                                     gameManager.chooseOption(choice)
                                 }) {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 15)
-                                            .fill(Color.black.opacity(0.7)) // Semi-transparent black
-                                            .frame(width: 370, height: 80) // Adjusted size to match original button
+                                            .fill(Color.black.opacity(0.6))
+                                            .frame(width: 370, height: 90)
                                             .overlay(
                                                 Text(choice)
                                                     .font(.headline)
                                                     .foregroundColor(.white)
                                                     .shadow(radius: 2)
-                                                    .frame(width: 340, height: 80) // Adjusted size to match original button
+                                                    .frame(width: 340, height: 80)
                                                     .multilineTextAlignment(.center)
                                                     .padding(.horizontal, 20)
 
@@ -62,7 +74,9 @@ struct ScreenOne: View {
 //                                .frame(width: 370, height: 65)
                             }
                         }
-                        .padding(.leading, 11)
+                        .padding(.top, -40) // Move buttons up on the screen
+
+//                        .padding(.leading, 11)
                     } else {
                         Text("No Story Found")
                             .foregroundColor(.red)
@@ -74,16 +88,17 @@ struct ScreenOne: View {
                 Spacer()
 
                 // ✅ Restored BottomView for Story Text
-                if let character = gameManager.selectedCharacter,
+                if !gameManager.isGameOver,
+                    let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
-                    let storyText = String(storyText.prefix(85)) + " ..." // ✅ Show first 80 characters
+                    let storyText = String(storyText.prefix(95)) + " ... Expand Text" // Show first 80 characters
 
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.black.opacity(0.7))
-                        .frame(width: 370, height: 150)
+                        .fill(Color.black.opacity(0.6))
+                        .frame(width: 370, height: 160)
                         .overlay(
                             Text(storyText)
-                                .font(.system(size: 22)).bold()
+                                .font(.headline) //was  .font(.system(size: 20)).bold()
                                 .foregroundColor(.white)
                                 .shadow(radius: 2)
                                 .padding()
@@ -92,7 +107,7 @@ struct ScreenOne: View {
                         .onTapGesture {
                             isBottomSheetVisible = true
                         }
-                        .padding(.bottom, 100)
+                        .padding(.bottom, 140) //moves the story up
                 }
             }
         }
@@ -109,9 +124,11 @@ struct ScreenOne: View {
         }
     }
 
-    // ✅ Forcefully reset navigation to WelcomeScreen
+    // Forcefully reset navigation to WelcomeScreen
     private func forceResetToWelcomeScreen() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        gameManager.isGameOver = false // Hide "YOU DIED" screen first
+
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = scene.windows.first {
                 print("🎯 ScreenOne: Forcing reset to WelcomeScreen!")  // ✅ Debug navigation
