@@ -27,7 +27,10 @@ struct ChoiceOutcomeView: View {
                     .padding()
                     .frame(maxWidth: 305)
                     .cornerRadius(15)
-                
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(20)
+
+
             }
         }
         .contentShape(Rectangle()) // Ensures the whole screen is tappable
@@ -39,7 +42,7 @@ struct ChoiceOutcomeView: View {
 
 #Preview {
     ChoiceOutcomeView(
-        outcome: StoryOutcome(text: "This village is everything you know, and you refuse to let it fall. Gripping whatever weapon you can find, you prepare to face the coming storm—no matter the cost. The elders bark orders, rallying those willing to fight. The air is thick with tension, the weight of what’s to come settling deep in your chest.", background: "", death: false),
+        outcome: StoryOutcome(text: "This village is everything you know, and you refuse to let it fall. Gripping whatever weapon you can find, you prepare to face the coming storm—no matter the cost. The elders bark orders, rallying those willing to fight. The air is thick with tension, the weight of what’s to come settling deep in your chest.", background: "SmokingCity", death: false),
         showOutcome: .constant(false)
     )
 }
