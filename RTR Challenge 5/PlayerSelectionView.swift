@@ -7,51 +7,64 @@ struct PlayerSelectionView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Image("SelectBG")
+                Image("GB")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
                     .offset(CGSize(width: 0, height: -10))
                 
-                Image("LargeScrollBG")
+                
+                Image("ScrollOut")
                     .resizable()
                     .scaledToFit()
+                    .frame(width: 650, height: 630)
+                    .offset(CGSize(width: 0, height: 150))
+
+
                     .overlay(
                         Text("""
-                                    Two lives intertwined by fate,
-                                     yet shaped by choice.
+                                Two lives intertwined by fate,
+                                        yet shaped by choice.
 
-                               Their journeys are yours to decide
+                                Their journeys are yours to 
+                                                    decide
                              
-                                       Which path will you walk?
+                             
+                                    Which path will you walk?
                              
                              
                              """)
-                            .font(.system(size: 20, weight: .bold))
+                            .font(.system(size: 22, weight: .bold))
                             .foregroundColor(.black)
                             .shadow(color: .white, radius: 0.2)
                             .frame(alignment: .center)
+                            .offset(y: 55)
+//                            .padding(.bottom, 0)
+
+
                     )
-                    .offset(y: -215)
-                    .frame(width: 360, height: 380)
+                    .offset(y: -195)
+                    .frame(width: 360, height: 100)
 
 
                 
-                VStack(spacing: 95) {
+                VStack(spacing: 25) {
                     Button(action: {
                         gameManager.selectCharacter("Aldreic") // ✅ Save selection
                         navigateToBackground = true
                     }) {
-                        Image("SScroll")
+                        Image("PlayerButton")
                             .resizable()
-                            .frame(width: 280, height: 110)
+                            .frame(width: 200, height: 70)
+
                             .overlay(
-                                Text("Aldric")
-                                    .font(.system(size: 26, weight: .bold))
+                                Text("ALDRIC")
+                                    .font(.system(size: 25, weight: .bold))
                                     .foregroundColor(.black)
                                     .shadow(color: .white, radius: 0.2)
                             )
-                            .offset(y: 65)
+                            .offset(y: 5)
+//                            .border(Color.black, width: 10)
 
 
                     }
@@ -60,21 +73,22 @@ struct PlayerSelectionView: View {
                         gameManager.selectCharacter("Thane") // ✅ Save selection
                         navigateToBackground = true
                     }) {
-                        Image("SScroll")
+                        Image("PlayerButton")
                             .resizable()
-                            .frame(width: 280, height: 110)
+                            .frame(width: 200, height: 70)
                             .overlay(
                         
-                        Text("Thane")
+                        Text("THANE")
                             .font(.system(size: 26, weight: .bold))
                             .foregroundColor(.black)
                             .shadow(color: .white, radius: 0.2)
                         )
                             .offset(y:-3)
+//                            .border(Color.black, width: 10)
 
                     }
                 }
-                .padding(.top, 80)
+                .padding(.top, 100)
 
             }
             .navigationDestination(isPresented: $navigateToBackground) {

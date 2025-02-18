@@ -23,7 +23,7 @@ struct CharacterBackgroundView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                     .frame(maxWidth: 350, maxHeight: 230)
-                    .background(Color.black.opacity(0.1))
+                    .background(Color.black.opacity(0))
                     .cornerRadius(20)
                     .offset(y:-205)
 
