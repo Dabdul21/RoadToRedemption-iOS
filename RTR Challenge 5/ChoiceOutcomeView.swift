@@ -13,7 +13,7 @@ struct ChoiceOutcomeView: View {
                     .scaledToFill()
                     .ignoresSafeArea()
             } else {
-                Image("OutcomeBG") // Replace with your default image name
+                Image("Out") // Replace with your outcome default image name
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
@@ -21,13 +21,13 @@ struct ChoiceOutcomeView: View {
 
             VStack {
                 Text(outcome.text)
-                    .font(.system(size: 22))
+                    .font(.system(size: 23).bold())
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
-                    .frame(maxWidth: 350)
-                    .background(Color.black.opacity(0.4))
+                    .frame(maxWidth: 305)
                     .cornerRadius(15)
+                
             }
         }
         .contentShape(Rectangle()) // Ensures the whole screen is tappable
@@ -39,7 +39,7 @@ struct ChoiceOutcomeView: View {
 
 #Preview {
     ChoiceOutcomeView(
-        outcome: StoryOutcome(text: "Sample Outcome", background: "", death: false),
+        outcome: StoryOutcome(text: "This village is everything you know, and you refuse to let it fall. Gripping whatever weapon you can find, you prepare to face the coming storm—no matter the cost. The elders bark orders, rallying those willing to fight. The air is thick with tension, the weight of what’s to come settling deep in your chest.", background: "", death: false),
         showOutcome: .constant(false)
     )
 }

@@ -11,7 +11,7 @@
             "outcomes": {
                 "Help fortify the village with the elders.": {
                     "text": "You reinforce the village walls and mend gaps in old traps. As you work, an unease feeling settles over you... Somethings off—like a storm is on the horizon",
-                    "background": "SelectBG",
+                    "background": "Img",
                     "death": false
                 },
                 "Practice sparring on your own. You could use the practice..": {
@@ -86,7 +86,7 @@
                 
                 "Pick up your pace, hoping to lose them in the trees.": "Pick_Pace",
                 
-                "Find a hiding place and wait to see what they do.": "Hiding_Place"
+                "Find a hiding place and wait to see what they do.": "DEATH"
             },
             "outcomes": {
                 "Call out, demanding to know who—or what—is following you.": {
@@ -102,7 +102,7 @@
                 "Find a hiding place and wait to see what they do.": {
                     "text": "You slip into the shadows, pressing yourself against the rough bark of a tree. The footsteps stop. Silence stretches, unbearable. Then, soft breathing—just on the other side of the trunk.",
                     "background": "forest.jpg",
-                    "death": false
+                    "death": true
                 }
             }
         },
@@ -117,7 +117,7 @@
                 "Look for the village leader, hoping for orders.": "Village_Leader"
             },
             "outcomes": {
-                "Stand your ground and meet the enemy head-on": {
+                "Stand your ground and meet the enemy head-on.": {
                     "text": "You plant your feet and raise your weapon, waiting for the first raider to reach you. When they do, steel clashes, the force of their attack nearly knocking you off balance. This isn’t practice. This is survival.",
                     "background": "fog.jpg",
                     "death": false
@@ -134,193 +134,290 @@
                 }
             }
         },
+        
+        "Stand_Ground": {
+            "text": "The clash of steel rings in your ears as you parry blow after blow. The raider is relentless, their strikes fueled by bloodlust. Your muscles burn, but you hold your ground. Then, out of the corner of your eye, you see another raider closing in. You have to make a decision—fast.",
+            "choices": {
+                "Hold your ground and brace for the second attacker.": "Brace_Second",
+                "Attempt to disengage and reposition.": "Brace_Second",
+                "Strike first before they can reach you.": "Brace_Second"
+            },
+            "outcomes": {
+                "Hold your ground and brace for the second attacker.": {
+                    "text": "You tighten your grip and steel yourself for impact. The second raider crashes into you, the force nearly sending you to the ground. Pain shoots through your ribs, but you're still standing. The fight isn’t over.",
+                    "background": "battlefield.jpg",
+                    "death": false
+                },
+                "Attempt to disengage and reposition.": {
+                    "text": "You break away, sidestepping as the second raider lunges. Their blade narrowly misses, but now you’re out of position. The first raider recovers quickly, turning to face you once more.",
+                    "background": "forest_edge.jpg",
+                    "death": false
+                },
+                "Strike first before they can reach you.": {
+                    "text": "You pivot, lashing out with your weapon before the second raider can strike. Your blade finds flesh, and they stagger. The first raider hesitates, but only for a moment. The fight continues.",
+                    "background": "bloodied_ground.jpg",
+                    "death": false
+                }
+            }
+        },
+
+        "Behind_Cover": {
+            "text": "The overturned cart shields you from the chaos, but the battle rages on. The raider you spotted is still unaware of you, but they won’t be for long. Time is running out.",
+            "choices": {
+                "Ambush the raider while they’re distracted.": "Ambush",
+                "Wait for them to move closer before striking.": "Ambush",
+                "Use the cart for cover and look for another way out.": "DEATH"
+            },
+            "outcomes": {
+                "Ambush the raider while they’re distracted.": {
+                    "text": "You leap from cover, striking before the raider can react. Their eyes widen in shock, but it’s too late. They collapse, and you turn to assess the battlefield once more.",
+                    "background": "shadows.jpg",
+                    "death": false
+                },
+                "Wait for them to move closer before striking.": {
+                    "text": "You hold your breath, waiting as the raider moves closer. When they’re within reach, you spring forward. They manage to raise their weapon, but your strike lands first. The fight isn’t over, but you’ve gained the upper hand.",
+                    "background": "tension.jpg",
+                    "death": false
+                },
+                "Use the cart for cover and look for another way out.": {
+                    "text": "You scan for another way out, but before you can move, another raider spots you. Their shout alerts the others. You’ve lost the element of surprise.",
+                    "background": "exposed.jpg",
+                    "death": true
+                }
+            }
+        },
+
+        "Village_Leader": {
+            "text": "The village elder is locked in combat, their blade flashing as they fend off attackers. They glance your way, assessing your presence. ‘We need to hold the line!’ they shout. But how?",
+            "choices": {
+                "Take command of nearby villagers and rally them.": "Rally_Villagers",
+                "Find a higher vantage point to survey the battle.": "Death",
+                "Stay close to the leader and fight alongside them.": "Rally_Villagers"
+            },
+            "outcomes": {
+                "Take command of nearby villagers and rally them.": {
+                    "text": "You call out to the nearby villagers, urging them to hold their ground. Some hesitate, but others respond, gripping their weapons with newfound resolve. The tide of battle shifts ever so slightly.",
+                    "background": "rally.jpg",
+                    "death": false
+                },
+                "Find a higher vantage point to survey the battle.": {
+                    "text": "You break away, climbing onto a collapsed structure to survey the battlefield. The scene is grim, but you spot an opening—one that could turn the fight in your favor if acted on swiftly, before your able to act your stuck with an arrow",
+                    "background": "high_ground.jpg",
+                    "death": true
+                },
+                "Stay close to the leader and fight alongside them.": {
+                    "text": "You stand beside the village elder, matching their movements as they fight. The weight of responsibility settles over you, but there’s no time for doubt. The battle continues.",
+                    "background": "warrior.jpg",
+                    "death": false
+                }
+            }
+        },
 
         "Call_Out": {
-            "text": "You prepare for battle as the stranger charges toward you!",
+            "text": "Your voice cuts through the silence, but the stillness that follows is unnerving. The whisper lingers in your ear, an icy breath that makes your skin crawl. Then—movement behind you. Something is there.",
             "choices": {
-                "Fight back": "scene10",
-                
-                "Dodge and counter": "scene11",
-                
-                "Try to talk": "scene11"
+                "Turn around and confront it head-on.": "DEATH",
+                "Slowly back away, keeping your eyes forward.": "Death",
+                "Run without looking back.": "DEATH"
             },
             "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
+                "Turn around and confront it head-on.": {
+                    "text": "You turn swiftly, weapon ready. But there’s nothing. Just empty air. A chill runs down your spine as laughter—soft, mocking—echoes from the trees.",
+                    "background": "mist.jpg",
+                    "death": true
+                },
+                "Slowly back away, keeping your eyes forward.": {
+                    "text": "You step backward, careful not to make a sound. The whisper follows, growing clearer with each step. It’s speaking your name.",
+                    "background": "forest_dark.jpg",
+                    "death": true
+                },
+                "Run without looking back.": {
+                    "text": "Panic surges through you, and you sprint into the trees. The whisper turns into a chorus, voices murmuring from the darkness. They are all around you now.",
+                    "background": "running.jpg",
+                    "death": true
+                }
+            }
+        },
+
+
+        "Pick_Pace": {
+                  "text": "You push forward, weaving through the trees, heart pounding. The footsteps behind you remain steady, neither slowing nor quickening. The presence follows with an unsettling calm. The path ahead splits in two.",
+                  "choices": {
+                      "Take the left path, deeper into the forest.": "DEATH",
+                      "Take the right path, toward open ground.": "DEATH",
+                      "Climb a tree and wait to see who follows.": "DEATH"
+                  },
+                  "outcomes": {
+                      "Take the left path, deeper into the forest.": {
+                          "text": "You veer left, plunging deeper into the woods. The canopy thickens, blocking the moonlight. The air grows colder. The footsteps stop, but an eerie silence follows instead.",
+                          "background": "dark_forest.jpg",
+                          "death": true
+                      },
+                      "Take the right path, toward open ground.": {
+                          "text": "You sprint toward open ground, hoping to lose them in the moonlight. But as the trees thin, a shadow stretches across your path—something, or someone, is already waiting.",
+                          "background": "open_field.jpg",
+                          "death": true
+                      },
+                      "Climb a tree and wait to see who follows.": {
+                          "text": "You scramble up the nearest tree, pressing yourself against the bark. The footsteps continue below, pausing right at the base of your hiding place. A whisper drifts upward: 'I see you.'",
+                          "background": "tree_hide.jpg",
+                          "death": true
+                      }
+                  }
+              },
+        
+        "Ambush": {
+            "text": "Perched high above the tumult, you spot the raider oblivious to your presence as they navigate the chaos below. The perfect moment to launch an ambush is at your fingertips, yet the battlefield remains unpredictable.",
+            "choices": {
+              "Leap down and attack with the element of surprise.": "Knights_Arrive",
+              "Take aim from above and deliver a ranged assault.": "Knights_Arrive",
+              "Hold your position to wait for a clearer shot.": "DEATH"
+            },
+            "outcomes": {
+              "Leap down and attack with the element of surprise.": {
+                "text": "You spring from your elevated perch, crashing down onto the raider with a force that shatters their focus. The sudden strike leaves them reeling, granting you the upper hand in this skirmish.",
+                "background": "surprise_strike.jpg",
+                "death": false
+              },
+              "Take aim from above and deliver a ranged assault.": {
+                "text": "With practiced precision, you take aim and unleash a well-placed shot. The projectile finds its mark, stunning the raider momentarily and tilting the balance of combat in your favor.",
+                "background": "ranged_attack.jpg",
+                "death": false
+              },
+              "Hold your position to wait for a clearer shot.": {
+                "text": "You decide to bide your time, but hesitation proves costly. The raider, alerted by a sudden shift in the battle's rhythm, notices your presence and reacts swiftly. Your window of opportunity closes as you become exposed.",
+                "background": "exposed_position.jpg",
+                "death": true
+              }
+            }
+          },
+        "Knights_Arrive": {
+            "text": "As the battle reaches a fever pitch, the thunder of hooves shatters the din of clashing steel. A proud line of knights, their armor gleaming in the waning light, bursts onto the field. Their arrival is a turning point, yet the chaos persists and demands swift decisions.",
+            "choices": {
+              "Rush forward to join the knights and overwhelm the enemy.": "Battle_Finale",
+              "Hold your ground and let the knights take the lead.": "Battle_Finale",
+              "Break away to target an enemy commander's flank.": "Battle_Finale"
+            },
+            "outcomes": {
+              "Rush forward to join the knights and overwhelm the enemy.": {
+                "text": "You charge alongside the knights, your blades singing in unison with theirs. The combined assault shatters the enemy's formation, turning the tide of battle as foes retreat in confusion.",
+                "background": "knight_charge.jpg",
+                "death": false
+              },
+              "Hold your ground and let the knights take the lead.": {
+                "text": "You remain in your position, relying on the knights to spearhead the attack. Their disciplined advance creates gaps in the enemy's defenses, but standing alone leaves you exposed to stray strikes.",
+                "background": "steady_hold.jpg",
+                "death": false
+              },
+              "Break away to target an enemy commander's flank.": {
+                "text": "In a daring move, you slip away from the main fray to target an enemy commander. However, your isolation becomes your undoing—a hidden enemy marksman seizes the opportunity, and a fatal arrow finds you before you can alter the course of battle.",
+                "background": "fatal_strike.jpg",
+                "death": true
+              }
+            }
+          },
+
+        "Battle_Finale": {
+            "text": "Your ambush has unsettled the enemy. Knights now flood the field. Choose your final move:",
+            "choices": {
+              "Charge with the knights for a final assault.": "Finale",
+              "Hold your ground until all enemies fall.": "Finale",
+              "Sneak behind enemy lines to kill their leader.": "Battle_Finale"
+            },
+            "outcomes": {
+              "Charge with the knights for a final assault.": {
+                "text": "You charge with the knights, breaking the enemy line. Victory is yours.",
+                "background": "final_charge.jpg",
+                "death": false
+              },
+              "Hold your ground until all enemies fall.": {
+                "text": "You hold firm. The enemy retreats, and the battle is won.",
+                "background": "stalwart_defense.jpg",
+                "death": false
+              },
+              "Sneak behind enemy lines to kill their leader.": {
+                "text": "You slip away, but an ambush claims your life.",
+                "background": "ambush_fail.jpg",
+                "death": true
+              }
+            }
+          },
+        "Brace_Second": {
+            "text": "Battered but not beaten, you catch your breath as the chaos momentarily subsides. The enemy wavers—what's your next move?",
+            "choices": {
+              "Attack immediately to exploit their confusion.": "Ambush",
+              "Step back to reassess your position.": "Ambush",
+              "Call out to rally your nearby allies.": "Ambush"
+            },
+            "outcomes": {
+              "Attack immediately to exploit their confusion.": {
+                "text": "You surge forward, landing a swift blow that throws the enemy into disarray.",
+                "background": "attack.jpg",
+                "death": true
+              },
+              "Step back to reassess your position.": {
+                "text": "You retreat briefly, regaining composure and preparing for the next wave.",
+                "background": "reposition.jpg",
+                "death": false
+              },
+              "Call out to rally your nearby allies.": {
+                "text": "Your shout echoes through the fray, and your allies rally, ready to join the fight.",
+                "background": "rally.jpg",
+                "death": false
+              }
+            }
+        },
+         
+        
+        "Rally_Villagers": {
+            "text": "You take a deep breath and step forward, seizing the moment. With authority, you shout to the villagers, “Gather behind me—now!” ",
+            "choices": {
+                "Direct a flank maneuver to catch the enemy off guard.": "Ambush",
+                "Establish a fortified defensive line to repel the onslaught.": "Ambush",
+                "Target enemy commanders to sow chaos in their ranks.": "Ambush"
+        
+            },
+            "outcomes": {
+                "Direct a flank maneuver to catch the enemy off guard.": {
+                    "text": "You swiftly lead a group of villagers in a surprise flank maneuver. As you circle around, you engage a mysterious stranger whose blade meets yours in a fierce clash.",
                     "background": "battle.jpg",
                     "death": false
                 },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
+                "Establish a fortified defensive line to repel the onslaught.": {
+                    "text": "You command the villagers to form a resolute defensive line. With strategic precision, you hold the enemy at bay and deflect their relentless assault.",
                     "background": "evade.jpg",
                     "death": false
                 },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
+                "Target enemy commanders to sow chaos in their ranks.": {
+                    "text": "You focus your assault on the enemy commanders, intent on breaking their chain of command. Amid the turmoil, a lone stranger hesitates, providing you with a critical opening.",
                     "background": "talk.jpg",
-                    "death": false
+                    "death": true
                 }
             }
         },
         
-        "Killed_Running": {
-            "text": "You prepare for battle as the stranger charges toward you!",
+        "Finale": {
+            "text": "The enemy lies defeated and calm settles over the field. Sir Gavin rides forward, his voice ringing out, 'You fought with honor. Will you accept this recommendation for knighthood?'",
             "choices": {
-                "Fight back": "scene10",
-                
-                "Dodge and counter": "scene11",
-                
-                "Try to talk": "scene11"
+              "Accept Sir Gavin's invitation.": "Trials",
+              "Decline and continue on your own path.": "Finale"
             },
             "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
-                    "background": "battle.jpg",
-                    "death": false
-                },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
-                    "background": "evade.jpg",
-                    "death": false
-                },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
-                    "background": "talk.jpg",
-                    "death": false
-                }
+              "Accept Sir Gavin's invitation.": {
+                "text": "You accept the invitation. In a solemn ceremony, Sir Gavin knights you on the spot. With your new title, you ride into the future alongside your noble brothers.",
+                "background": "knight_ceremony.jpg",
+                "death": false
+              },
+              "Decline and continue on your own path.": {
+                "text": "You respectfully decline, choosing to forge your own destiny. Though the knighthood passes you by, victory is yours, and your legend lives on.",
+                "background": "solo_victory.jpg",
+                "death": false
+              }
             }
         },
-        
-        "": {
-            "text": "You prepare for battle as the stranger charges toward you!",
-            "choices": {
-                "Fight back": "scene10",
-                "Dodge and counter": "scene11",
-                "Try to talk": "scene11"
-            },
-            "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
-                    "background": "battle.jpg",
-                    "death": false
-                },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
-                    "background": "evade.jpg",
-                    "death": false
-                },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
-                    "background": "talk.jpg",
-                    "death": false
-                }
-            }
-        },
-        
-        "": {
-            "text": "You prepare for battle as the stranger charges toward you!",
-            "choices": {
-                "Fight back": "scene10",
-                "Dodge and counter": "scene11",
-                "Try to talk": "scene11"
-            },
-            "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
-                    "background": "battle.jpg",
-                    "death": false
-                },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
-                    "background": "evade.jpg",
-                    "death": false
-                },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
-                    "background": "talk.jpg",
-                    "death": false
-                }
-            }
-        },
-        "": {
-            "text": "You prepare for battle as the stranger charges toward you!",
-            "choices": {
-                "Fight back": "scene10",
-                "Dodge and counter": "scene11",
-                "Try to talk": "scene11"
-            },
-            "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
-                    "background": "battle.jpg",
-                    "death": false
-                },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
-                    "background": "evade.jpg",
-                    "death": false
-                },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
-                    "background": "talk.jpg",
-                    "death": false
-                }
-            }
-        },
-        
-        "": {
-            "text": "You prepare for battle as the stranger charges toward you!",
-            "choices": {
-                "Fight back": "scene10",
-                "Dodge and counter": "scene11",
-                "Try to talk": "scene11"
-            },
-            "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
-                    "background": "battle.jpg",
-                    "death": false
-                },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
-                    "background": "evade.jpg",
-                    "death": false
-                },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
-                    "background": "talk.jpg",
-                    "death": false
-                }
-            }
-        },
-        
-        "": {
-            "text": "You prepare for battle as the stranger charges toward you!",
-            "choices": {
-                "Fight back": "scene10",
-                "Dodge and counter": "scene11",
-                "Try to talk": "scene11"
-            },
-            "outcomes": {
-                "Fight back": {
-                    "text": "You clash swords with the stranger!",
-                    "background": "battle.jpg",
-                    "death": false
-                },
-                "Dodge and counter": {
-                    "text": "You skillfully evade the attack.",
-                    "background": "evade.jpg",
-                    "death": false
-                },
-                "Try to talk": {
-                    "text": "The stranger hesitates but stays on guard.",
-                    "background": "talk.jpg",
-                    "death": false
-                }
-            }
-        },
-        
-        "": {
+           
+       
+        "Trials": {
             "text": "You prepare for battle as the stranger charges toward you!",
             "choices": {
                 "Fight back": "scene10",

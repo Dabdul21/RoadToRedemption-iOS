@@ -5,7 +5,7 @@ class AudioManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     var audioPlayer: AVAudioPlayer?
     @Published var isMuted: Bool = false
-    @Published var volume: Float = 0.1 { // Start at half volume
+    @Published var volume: Float = 0.2 { // Start at half volume
         didSet {
             audioPlayer?.volume = volume
         }

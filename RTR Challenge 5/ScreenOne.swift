@@ -6,7 +6,8 @@ struct ScreenOne: View {
 
     var body: some View {
         ZStack {
-            Image("OutcomeBG")
+            //screen background
+            Image("GB")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -56,7 +57,7 @@ struct ScreenOne: View {
                                 }) {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 15)
-                                            .fill(Color.black.opacity(0.6))
+                                            .fill(Color.black.opacity(0.5))
                                             .frame(width: 370, height: 90)
                                             .overlay(
                                                 Text(choice)
@@ -91,10 +92,10 @@ struct ScreenOne: View {
                 if !gameManager.isGameOver,
                     let character = gameManager.selectedCharacter,
                    let storyText = gameManager.story[character]?[gameManager.currentStoryNode]?.text {
-                    let storyText = String(storyText.prefix(95)) + " ... Expand Text" // Show first 80 characters
+                    let storyText = String(storyText.prefix(95)) + " ... Tap Text" // Show first 80 characters
 
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.black.opacity(0.6))
+                        .fill(Color.black.opacity(0.4))
                         .frame(width: 370, height: 160)
                         .overlay(
                             Text(storyText)
@@ -114,7 +115,7 @@ struct ScreenOne: View {
         .sheet(isPresented: $isBottomSheetVisible) {
             BottomView(
                 isVisible: $isBottomSheetVisible,
-                storyText: gameManager.story[gameManager.selectedCharacter ?? ""]?[gameManager.currentStoryNode]?.text ?? "No Story Found"
+                storyText: gameManager.story[gameManager.selectedCharacter ?? ""]?[gameManager.currentStoryNode]?.text ?? "No Story Found..Coming Soon"
             )
         }
         .sheet(isPresented: $gameManager.showingOutcome) {
