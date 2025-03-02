@@ -2,7 +2,10 @@
 # The Road to Redemption
 **Turn Sound ON**
 
-https://github.com/user-attachments/assets/c5dc756c-aa4a-405f-a51b-9f0caabec84d
+
+
+https://github.com/user-attachments/assets/7df90315-f843-43c0-a8ea-521c92d3e1e4
+
 
 
 *A choice-driven story game set in a world struggling to survive The Crave.*
