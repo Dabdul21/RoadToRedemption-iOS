@@ -1,8 +1,15 @@
 
 # The Road to Redemption
+
+**Turn Sound ON | Full DEMO on YT Link on the About Section **
+
+https://github.com/user-attachments/assets/7df90315-f843-43c0-a8ea-521c92d3e1e4
+
+## Play On TestFlight
+
+![QR](https://github.com/user-attachments/assets/edd0279e-465d-40dd-9dd5-8b23a48816b8)
+
 **Turn Sound ON**
-
-
 
 https://github.com/user-attachments/assets/7df90315-f843-43c0-a8ea-521c92d3e1e4
 
@@ -19,6 +26,3 @@ In this interactive narrative, players step into the shoes of a wanderer seeking
 
 Your path is yours to forge. Will you find salvation or be consumed by the chaos?
 
-## Play On TestFlight
-
-![QR](https://github.com/user-attachments/assets/edd0279e-465d-40dd-9dd5-8b23a48816b8)
