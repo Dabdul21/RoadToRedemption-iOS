@@ -10,3 +10,7 @@ In this interactive narrative, players step into the shoes of a wanderer seeking
 - **Immersive Narrative** – A rich, atmospheric tale of survival and redemption.
 
 Your path is yours to forge. Will you find salvation or be consumed by the chaos?
+
+## Play On TestFlight
+
+![QR](https://github.com/user-attachments/assets/edd0279e-465d-40dd-9dd5-8b23a48816b8)
